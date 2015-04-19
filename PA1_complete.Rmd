@@ -24,7 +24,6 @@ summary(activity[good, ])
 ## What is mean total number of steps taken per day?
 First find the total steps in each day
 ```{r, echo=TRUE}
-mean(activity[good, "steps"])
 day_activity <- tapply(activity[good, "steps"], activity[good, "date"], sum )
 
 day_activity
@@ -72,8 +71,8 @@ Create a new histogram of steps taken each day after the steps are imputed.
 ```{r , echo=TRUE}
 new_day_activity <- tapply(activityNew[, "steps"], activityNew[ , "date"], sum )
 mean(new_day_activity)
-median(day_activity)
-hist(day_activity[complete.cases(day_activity)], br=10, xlab="daily steps",ylab="days", main="Histogram of total steps taken each day")
+median(new_day_activity) 
+hist(new_day_activity, br=10, xlab="daily steps",ylab="days", main="Histogram of total steps taken each day")
 ```
 
 

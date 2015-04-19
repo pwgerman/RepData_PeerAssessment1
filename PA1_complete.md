@@ -172,7 +172,31 @@ summary(activityNew)
 ##  Max.   :10927.0   2012-10-06:  288   Max.   :2355.0  
 ##                    (Other)   :15840
 ```
+Create a new histogram of steps taken each day after the steps are imputed.
 
+
+```r
+new_day_activity <- tapply(activityNew[, "steps"], activityNew[ , "date"], sum )
+mean(new_day_activity)
+```
+
+```
+## [1] 84188.07
+```
+
+```r
+median(new_day_activity) 
+```
+
+```
+## [1] 11458
+```
+
+```r
+hist(new_day_activity, br=10, xlab="daily steps",ylab="days", main="Histogram of total steps taken each day")
+```
+
+![](PA1_complete_files/figure-html/unnamed-chunk-9-1.png) 
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
