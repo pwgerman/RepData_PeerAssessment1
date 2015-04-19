@@ -44,14 +44,6 @@ summary(activity[good, ])
 First find the total steps in each day
 
 ```r
-mean(activity[good, "steps"])
-```
-
-```
-## [1] 37.3826
-```
-
-```r
 day_activity <- tapply(activity[good, "steps"], activity[good, "date"], sum )
 
 day_activity

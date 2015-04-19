@@ -93,8 +93,6 @@ summary(activity[good, ])</code></pre>
 <div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">
 <h2>What is mean total number of steps taken per day?</h2>
 <p>First find the total steps in each day</p>
-<pre class="r"><code>mean(activity[good, &quot;steps&quot;])</code></pre>
-<pre><code>## [1] 37.3826</code></pre>
 <pre class="r"><code>day_activity &lt;- tapply(activity[good, &quot;steps&quot;], activity[good, &quot;date&quot;], sum )
 
 day_activity</code></pre>
