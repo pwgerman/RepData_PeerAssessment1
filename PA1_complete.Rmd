@@ -22,15 +22,51 @@ summary(activity[good, ])
 
 
 ## What is mean total number of steps taken per day?
+First find the total steps in each day
 ```{r, echo=TRUE}
 mean(activity[good, "steps"])
+day_activity <- tapply(activity[good, "steps"], activity[good, "date"], sum )
+
+day_activity
 ```
+Next find the mean of the days with good values
+
+```{r , echo=TRUE}
+mean(day_activity[complete.cases(day_activity)])
+median(day_activity[complete.cases(day_activity)])
+hist(day_activity[complete.cases(day_activity)], br=10, xlab="daily steps",ylab="days", main="Histogram of total steps taken each day")
+```
+
 
 ## What is the average daily activity pattern?
 
+```{r , echo=TRUE}
+time_activity <- tapply(activity[good, "steps"], activity[good, "interval"], sum )
+plot(time_activity, xlab="5-min intervals",ylab="steps taken", main="Time series of steps taken averaged across days")
+```
 
+What 5 minute interval gave the most steps?
+```{r , echo=TRUE}
+which.max(time_activity)
+```
+The most activity in a 5 minute interval occurs at 8:35 in the morning.
 
 ## Imputing missing values
+replace NA values with the mean number of steps for that time interval.
+```{r , echo=TRUE}
+activityTmp <- activity
+dim(time_activity)
+str(levels(activity$date))
+num_dates <- 61
+new_steps <- rep(time_activity, times = num_dates)
+activityTmp$steps <- new_steps
+```
+Now replace the NA's with the values in new_steps
+```{r , echo=TRUE}
+activityNew <- activity
+activityNew[!good, ] = activityTmp[!good, ]
+summary(activityNew)
+```
 
 
 
