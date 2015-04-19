@@ -67,7 +67,14 @@ activityNew <- activity
 activityNew[!good, ] = activityTmp[!good, ]
 summary(activityNew)
 ```
+Create a new histogram of steps taken each day after the steps are imputed.
 
+```{r , echo=TRUE}
+new_day_activity <- tapply(activityNew[, "steps"], activityNew[ , "date"], sum )
+mean(new_day_activity)
+median(day_activity)
+hist(day_activity[complete.cases(day_activity)], br=10, xlab="daily steps",ylab="days", main="Histogram of total steps taken each day")
+```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
