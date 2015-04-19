@@ -7,12 +7,24 @@ output:
 
 
 ## Loading and preprocessing the data
+Load the activity data into dataframe "activity".
+```{r , echo=TRUE}
+setwd("~/Src/R/Repro_Research_coursera/RepData_PeerAssessment1/")
+activity <- read.csv("activity.csv", header = TRUE)
+summary(activity)
+```
+The summary of the data reveals that there are many NA's.  remove incomplete (NA) rows from subsequent analysis.
 
+```{r, echo=TRUE}
+good <- complete.cases(activity)
+summary(activity[good, ])
+```
 
 
 ## What is mean total number of steps taken per day?
-
-
+```{r, echo=TRUE}
+mean(activity[good, "steps"])
+```
 
 ## What is the average daily activity pattern?
 
